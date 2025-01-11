@@ -1,12 +1,12 @@
-# CNS Project - AES-RSA Encryption
+# AES-RSA Encryption Project
 
-This project demonstrates a secure file transfer mechanism using **AES encryption** for the file data and **RSA encryption** for the AES key. The project also includes a packet-sniffing simulation and guidance for monitoring network traffic using Wireshark.
+This project demonstrates a secure file transfer mechanism using **AES encryption** for the file data and **RSA encryption** for the AES key. It also includes a packet-sniffing simulation and guidance for monitoring network traffic using Wireshark.
 
 ---
 
-## **Project Features**
+## **Features**
 1. **File Encryption and Decryption**:
-   - **AES Encryption**: Secures file content.
+   - **AES Encryption**: Secures the file content.
    - **RSA Encryption**: Secures the AES encryption key.
    - End-to-end security ensures only the intended recipient can decrypt the file.
 
@@ -20,7 +20,7 @@ This project demonstrates a secure file transfer mechanism using **AES encryptio
 
 ## **Folder Structure**
 - **`intruder/`**:
-  - Contains `sniffer.py`, a script to capture packets from the specified port.
+  - `sniffer.py`: A script to capture packets from the specified port.
 - **`keys/`**:
   - Contains the RSA key pair: `private_key.pem` (receiver) and `public_key.pem` (sender).
 - **`received_files/`**:
@@ -37,38 +37,48 @@ This project demonstrates a secure file transfer mechanism using **AES encryptio
 ---
 
 ## **How to Use**
+
 ### **1. Generate RSA Keys**
 Run the `generate_keys.py` script to generate `private_key.pem` and `public_key.pem`:
 ```bash
 python generate_keys.py
+```
 
-## **2. Start the Receiver**
-In the first terminal, run the receiver:
+### **2. Start the Receiver**
+In the first terminal, run the receiver script:
+```bash
 python receiver/receiver.py
+```
 
-3. Start the Sniffer (Optional)
-In the second terminal, simulate an intruder:
-bash
-Copy code
+### **3. Start the Sniffer (Optional)**
+In the second terminal, simulate an intruder by running the sniffer script:
+```bash
 python intruder/sniffer.py
+```
 
-
-4. Send a File
-In the third terminal, run the sender script and provide the file path to send
+### **4. Send a File**
+In the third terminal, run the sender script and provide the file path to send:
+```bash
 python sender/sender.py
+```
 
-5. View the Result
-The receiver saves the decrypted file in the received_files/ folder.
-Use the sniffer or Wireshark to view the encrypted traffic.
+### **5. View the Result**
+The receiver saves the decrypted file in the `received_files/` folder. Use the sniffer or Wireshark to view the encrypted traffic.
 
-Using Wireshark
-1. Select Network Interface
-Choose the "Adapter for loopback traffic capture" (if sender and receiver are on the same machine).
-2. Apply Filter
-Use the filter tcp.port == 65432 to view packets related to file transfer.
-3. Analyze TCP Stream
-Right-click on a captured packet and choose Follow > TCP Stream to view the encrypted communication.
-Conclusion
-This project demonstrates practical implementation of AES-RSA encryption for secure file transfer, along with network monitoring using Wireshark.
+---
 
+## **Using Wireshark**
+1. **Select Network Interface**:
+   - Choose the "Adapter for loopback traffic capture" (if sender and receiver are on the same machine).
+
+2. **Apply Filter**:
+   - Use the filter `tcp.port == 65432` to view packets related to file transfer.
+
+3. **Analyze TCP Stream**:
+   - Right-click on a captured packet and choose **Follow > TCP Stream** to view the encrypted communication.
+
+---
+
+## **Conclusion**
+This project demonstrates a practical implementation of AES-RSA encryption for secure file transfer, along with network monitoring using Wireshark.
 
